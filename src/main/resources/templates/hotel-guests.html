@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Landon Hotel: Guests</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<a href="/">Home Page</a>
+<h1 class="text-center m-3">Welcome to the Guests</h1>
+<h2><a href="/guests/new">ADD NEW GUEST</a></h2>
+<div style="max-width: 500px; margin: 3px auto" th:if="${message}" class="alert alert-success text-center">
+    <h5>
+        [[${message}]]
+    </h5>
+</div>
+<table class="table table-bordered table-hover table-striped text-center table-info">
+    <tr class="table-header text-uppercase table-success">
+        <th>Guest ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Delete Guest</th>
+        <th>Update Guest Info</th>
+    </tr>
+    <tr th:each="guest : ${guests}">
+        <td th:text="${guest.guestId}"></td>
+        <td th:text="${guest.firstName}"></td>
+        <td th:text="${guest.lastName}"></td>
+        <td th:text="${guest.email}"></td>
+        <td th:text="${guest.phoneNumber}"></td>
+        <td><a th:href="@{'/guests/delete/' + ${guest.guestId}}">Delete</a></td>
+        <td><a th:href="@{'/guests/edit/' + ${guest.guestId}}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

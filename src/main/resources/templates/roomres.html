@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Landon Hotel: Room Reservations</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<a href="/">Home Page</a>
+  <h1 class="text-center">Booked Reservations List</h1>
+<div style="max-width: 500px; margin: 3px auto" th:if="${message}" class="alert alert-success text-center">
+  <h5>
+    [[${message}]]
+  </h5>
+</div>
+  <table class="text-center table table-bordered table-hover table-striped table-info">
+    <tr class="table-dark">
+      <th>ID</th>
+      <th>Room ID</th>
+      <th>Guest ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Room Name</th>
+      <th>Room Number</th>
+      <th>Date</th>
+      <th>Update</th>
+      <th>Delete</th>
+      <th>Note</th>
+    </tr>
+    <tr th:each="roomReservation : ${roomReservations}">
+      <td th:text="${roomReservation.getId()}"></td>
+      <td th:text="${roomReservation.roomId}"></td>
+      <td th:text="${roomReservation.guestId}"></td>
+      <td th:text="${roomReservation.firstName}"></td>
+      <td th:text="${roomReservation.lastName}"></td>
+      <td th:text="${roomReservation.roomName}"></td>
+      <td th:text="${roomReservation.roomNumber}"></td>
+
+      <!--      <td th:text="${roomReservation.firstName} != null? ${roomReservation.lastName} +-->
+<!--      '  ' + ${roomReservation.firstName} : 'Vacant' "></td>-->
+      <td th:text="${roomReservation.getDateString()}"></td>
+      <th><a th:href="@{'/reservations/edit/' + ${roomReservation.getId()}}">Edit</a></th>
+      <th><a th:href="@{'/reservations/delete/' + ${roomReservation.getId()}}">Delete</a></th>
+      <th></th>
+
+
+    </tr>
+  </table>
+</body>
+</html>
